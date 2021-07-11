@@ -1,5 +1,7 @@
+import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/components/reusableCard.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = kInactiveColor;
   Color femaleCardColor = kInactiveColor;
 
-  int height = 180;
+  int height = 150;
   int weight = 50;
   int age = 20;
 
@@ -212,7 +214,18 @@ class _InputPageState extends State<InputPage> {
           ),
           CtaButton(
             onTap: () {
-              Navigator.pushNamed(context, 'result');
+              CalculatorBrain calc = CalculatorBrain(height, weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmiResult: calc.calculateBMI(),
+                    bmiResultText: calc.getResults(),
+                    bmiInterpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
             buttonTitle: 'Calculate',
           ),

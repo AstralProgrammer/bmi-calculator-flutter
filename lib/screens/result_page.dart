@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class ResultPage extends StatelessWidget {
+  final String bmiResult;
+  final String bmiResultText;
+  final String bmiInterpretation;
+
+  ResultPage({
+    @required this.bmiResult,
+    @required this.bmiResultText,
+    @required this.bmiInterpretation,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,15 +43,15 @@ class ResultPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Normal',
+                      bmiResultText,
                       style: kResultsTextStyle,
                     ),
                     Text(
-                      '18.9',
+                      bmiResult,
                       style: kBMITextStyle,
                     ),
                     Text(
-                      'Your BMI',
+                      bmiInterpretation,
                       style: kBodyTextStyle,
                     ),
                   ],
@@ -50,7 +60,7 @@ class ResultPage extends StatelessWidget {
               flex: 5,
             ),
             CtaButton(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               buttonTitle: 'Re-calculate',
