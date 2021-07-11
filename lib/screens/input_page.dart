@@ -1,9 +1,11 @@
-import 'package:bmi_calculator/reusableCard.dart';
+import 'package:bmi_calculator/components/reusableCard.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
-import 'genderLabel.dart';
+import '../constants.dart';
+import '../components/cta_button.dart';
+import '../components/genderLabel.dart';
 
 enum Gender { male, female }
 
@@ -34,7 +36,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   colour: (selectedGender == Gender.male &&
-                      maleCardColor == kInactiveColor)
+                          maleCardColor == kInactiveColor)
                       ? kCardColor
                       : kInactiveColor,
                   cardChild: GenderLabel(
@@ -51,7 +53,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   colour: (selectedGender == Gender.female &&
-                      maleCardColor == kInactiveColor)
+                          maleCardColor == kInactiveColor)
                       ? kCardColor
                       : kInactiveColor,
                   cardChild: GenderLabel(
@@ -102,7 +104,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         overlayColor: Color(0x1fEB1555),
                         overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30)),
+                            RoundSliderOverlayShape(overlayRadius: 30)),
                     child: Slider(
                       value: height.toDouble(),
                       min: 120,
@@ -208,42 +210,14 @@ class _InputPageState extends State<InputPage> {
               ),
             ]),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: kBottomContainerHeight,
-            child: FlatButton(
-              child: Text('Calculate'.toUpperCase()),
-              onPressed: () {
-                Navigator.pushNamed(context, 'result');
-              },
-            ),
+          CtaButton(
+            onTap: () {
+              Navigator.pushNamed(context, 'result');
+            },
+            buttonTitle: 'Calculate',
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final Function onPressed;
-  final IconData icon;
-
-  RoundIconButton({@required this.onPressed, @required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4c4f5e),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      elevation: 0,
-      child: Icon(icon),
     );
   }
 }
