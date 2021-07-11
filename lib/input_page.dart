@@ -34,7 +34,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   colour: (selectedGender == Gender.male &&
-                          maleCardColor == kInactiveColor)
+                      maleCardColor == kInactiveColor)
                       ? kCardColor
                       : kInactiveColor,
                   cardChild: GenderLabel(
@@ -51,7 +51,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   colour: (selectedGender == Gender.female &&
-                          maleCardColor == kInactiveColor)
+                      maleCardColor == kInactiveColor)
                       ? kCardColor
                       : kInactiveColor,
                   cardChild: GenderLabel(
@@ -74,7 +74,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'HEIGHT',
+                    'Height'.toUpperCase(),
                     style: kLabelTextStyle,
                   ),
                   Row(
@@ -102,7 +102,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         overlayColor: Color(0x1fEB1555),
                         overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 30)),
+                        RoundSliderOverlayShape(overlayRadius: 30)),
                     child: Slider(
                       value: height.toDouble(),
                       min: 120,
@@ -127,7 +127,7 @@ class _InputPageState extends State<InputPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'WEIGHT',
+                        'Weight'.toUpperCase(),
                         style: kLabelTextStyle,
                       ),
                       Text(
@@ -169,7 +169,7 @@ class _InputPageState extends State<InputPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'AGE',
+                        'age'.toUpperCase(),
                         style: kLabelTextStyle,
                       ),
                       Text(
@@ -182,7 +182,7 @@ class _InputPageState extends State<InputPage> {
                           RoundIconButton(
                             onPressed: () {
                               setState(() {
-                                if (age > 1){
+                                if (age > 1) {
                                   age--;
                                 }
                               });
@@ -213,6 +213,12 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
             height: kBottomContainerHeight,
+            child: FlatButton(
+              child: Text('Calculate'.toUpperCase()),
+              onPressed: () {
+                Navigator.pushNamed(context, 'result');
+              },
+            ),
           ),
         ],
       ),
